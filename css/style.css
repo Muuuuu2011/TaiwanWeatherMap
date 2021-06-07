@@ -1,0 +1,96 @@
+@charset "UTF-8";
+* {
+  font-family: 微軟正黑體;
+}
+
+section {
+  position: relative;
+  max-width: 1200px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: auto;
+}
+
+section #app {
+  position: relative;
+  top: 160px;
+  max-width: 580px;
+  width: 100%;
+}
+
+section svg {
+  stroke: white;
+}
+
+section path:hover {
+  fill: #072A40;
+}
+
+section .weather_box {
+  position: relative;
+  top: 60px;
+  max-width: 620px;
+  width: 100%;
+}
+
+section .weather_box .button {
+  position: relative;
+  top: 30px;
+  letter-spacing: 5px;
+  padding: 5px 10px;
+  font-size: 25px;
+  border: solid 1px;
+  border-radius: 5px;
+  display: inline-block;
+  margin-left: 50px;
+  color: #072A40;
+}
+
+section .weather_box .button:hover {
+  -webkit-box-shadow: 3px 3px 5px 6px #cccccc;
+          box-shadow: 3px 3px 5px 6px #cccccc;
+}
+
+section .weather_box ul {
+  list-style-type: none;
+  margin-top: 50px;
+  padding: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+section .weather_box ul li {
+  width: 49%;
+  background-color: #F9F7F0;
+  min-height: 55px;
+  border: solid 1px white;
+  border-radius: 5px;
+}
+
+section .weather_box ul li span {
+  width: 50%;
+  display: block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+}
+
+section .weather_box ul .g1 {
+  background-color: #d6d1d1;
+}
+
+section .weather_box ul li:hover {
+  -webkit-box-shadow: 3px 3px 5px 6px #cccccc;
+          box-shadow: 3px 3px 5px 6px #cccccc;
+}
