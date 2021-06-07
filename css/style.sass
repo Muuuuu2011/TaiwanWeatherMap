@@ -23,9 +23,11 @@ section
 
     & #app
         +rel-top(relative,160px)
-        +width(580px,100%)
+        +width(590px,100%)
 
     & svg
+        position: relative
+        right: 60px
         stroke:  white
 
     & path:hover
@@ -61,20 +63,36 @@ section
             & li
                 width: 49%
                 background-color: $color-white
-                min-height: 55px
+                min-height: 60px
                 border: solid 1px white
                 border-radius: 5px
                 float:left
+                display: flex
                 
-                
-                & span
+                & .city1,.city2
+                    +rel-top(relative,20px)
                     width: 50%
                     display: block
-                    // text-align: center
+                    text-align: center
                     position: relative
-                    top: 50%
-                    left: 50%
-                    transform: translateX(-50%) translateY(-50%)
+
+
+                & .span2
+                    display: flex
+                    flex-wrap: wrap
+                    width: 50%
+
+                    & img 
+                        margin: auto 
+                        width: 39px
+                        height: 39px
+                    
+                    & .textW
+                        width: 100%
+                        font-size: 14px
+                        font-weight: bold
+                        text-align: center
+
             
             & .g1 
                 background-color: #d6d1d1

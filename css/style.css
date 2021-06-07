@@ -16,11 +16,13 @@ section {
 section #app {
   position: relative;
   top: 160px;
-  max-width: 580px;
+  max-width: 590px;
   width: 100%;
 }
 
 section svg {
+  position: relative;
+  right: 60px;
   stroke: white;
 }
 
@@ -71,19 +73,43 @@ section .weather_box ul {
 section .weather_box ul li {
   width: 49%;
   background-color: #F9F7F0;
-  min-height: 55px;
+  min-height: 60px;
   border: solid 1px white;
   border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-section .weather_box ul li span {
+section .weather_box ul li .city1, section .weather_box ul li .city2 {
+  position: relative;
+  top: 20px;
   width: 50%;
   display: block;
+  text-align: center;
   position: relative;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
+}
+
+section .weather_box ul li .span2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 50%;
+}
+
+section .weather_box ul li .span2 img {
+  margin: auto;
+  width: 39px;
+  height: 39px;
+}
+
+section .weather_box ul li .span2 .textW {
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
 }
 
 section .weather_box ul .g1 {
