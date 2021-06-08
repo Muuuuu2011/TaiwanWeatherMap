@@ -1,0 +1,101 @@
+@mixin width($m,$w)
+    max-width: $m
+    width: $w
+    
+@mixin rel-top($r,$t)
+    position: $r
+    top: $t
+
+$color-darkblue: #072A40
+$color-white: #F9F7F0
+$color-lightblue: #18B7BE
+
+
+*
+    font-family: 微軟正黑體
+
+
+section
+    position: relative
+    +width(1200px,100%)
+    display: flex
+    margin: auto
+
+    & #app
+        +rel-top(relative,160px)
+        +width(590px,100%)
+
+    & svg
+        position: relative
+        right: 60px
+        stroke:  white
+
+    & path:hover
+        fill: $color-darkblue
+
+
+    & .weather_box
+        +rel-top(relative,60px)
+        +width(620px,100%)
+
+        & .button
+            +rel-top(relative,30px)
+            letter-spacing: 5px
+            padding: 5px 10px
+            font-size: 25px
+            border: solid 1px 
+            border-radius: 5px
+            display: inline-block
+            margin-left: 50px
+            color: $color-darkblue
+        & .button:hover
+            box-shadow: 3px 3px 5px 6px #cccccc
+            
+        & ul
+            list-style-type: none
+            margin-top: 50px
+            padding: 0px
+            display: flex
+            flex-direction: row
+            flex-wrap: wrap
+            
+
+            & li
+                width: 49%
+                background-color: $color-white
+                min-height: 60px
+                border: solid 1px white
+                border-radius: 5px
+                float:left
+                display: flex
+                
+                & .city1,.city2
+                    +rel-top(relative,20px)
+                    width: 50%
+                    display: block
+                    text-align: center
+                    position: relative
+
+
+                & .span2
+                    display: flex
+                    flex-wrap: wrap
+                    width: 50%
+
+                    & img 
+                        margin: auto 
+                        width: 39px
+                        height: 39px
+                    
+                    & .textW
+                        width: 100%
+                        font-size: 14px
+                        font-weight: bold
+                        text-align: center
+
+            
+            & .g1 
+                background-color: #d6d1d1
+
+            & li:hover
+                box-shadow: 3px 3px 5px 6px #cccccc
