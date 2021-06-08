@@ -42,19 +42,19 @@ function renderWeather() {
             });
             console.log(finalRec);
 
-            for (let i = 0; i < 23; i++) {
-                document.getElementById("text_" + (i + 1).toString()).textContent = finalRec[i][1] + "°C";
+            for (let i = 0; i < 22; i++) {
+                document.getElementById("text_" + i.toString()).textContent = finalRec[i][1] + "°C";
                 let wxStatus = parseInt(finalRec[i][2]);
                 if (wxStatus == 1) {
-                    document.getElementById("city_" + (i + 1).toString()).src = "image/sunny.png";
+                    document.getElementById("city_" + i.toString()).src = "image/sunny.png";
                 } else if (wxStatus == 2 || wxStatus == 3) {
-                    document.getElementById("city_" + (i + 1).toString()).src = "image/sunCloud.png";
+                    document.getElementById("city_" + i.toString()).src = "image/sunCloud.png";
                 } else if (wxStatus >= 4 && wxStatus < 8) {
-                    document.getElementById("city_" + (i + 1).toString()).src = "image/cloudy.png";
+                    document.getElementById("city_" + i.toString()).src = "image/cloudy.png";
                 } else if (wxStatus >= 8 && wxStatus < 42) {
-                    document.getElementById("city_" + (i + 1).toString()).src = "image/rainy.png";
+                    document.getElementById("city_" + i.toString()).src = "image/rainy.png";
                 } else if (wxStatus == 42) {
-                    document.getElementById("city_" + (i + 1).toString()).src = "image/snow.png";
+                    document.getElementById("city_" + i.toString()).src = "image/snow.png";
                 }
             }
         });

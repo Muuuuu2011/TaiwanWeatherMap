@@ -40,17 +40,17 @@ function renderRainPercent() {
                 finalRec.push([element.locationName, percent.toFixed(0)]);
             });
             console.log(finalRec);
-            for (let i = 0; i < 23; i++) {
-                document.getElementById("text_" + (i + 1).toString()).textContent = finalRec[i][1] + "%";
+            for (let i = 0; i < 22; i++) {
+                document.getElementById("text_" + i.toString()).textContent = finalRec[i][1] + "%";
                 let rainStatus = parseInt(finalRec[i][1]);
                 if (rainStatus >= 0 && rainStatus < 25) {
-                    document.getElementById("city_" + (i + 1).toString()).src = "image/raining_1.png";
+                    document.getElementById("city_" + i.toString()).src = "image/raining_1.png";
                 } else if (rainStatus >= 25 && rainStatus < 50) {
-                    document.getElementById("city_" + (i + 1).toString()).src = "image/raining_2.png";
+                    document.getElementById("city_" + i.toString()).src = "image/raining_2.png";
                 } else if (rainStatus >= 50 && rainStatus < 75) {
-                    document.getElementById("city_" + (i + 1).toString()).src = "image/raining_3.png";
+                    document.getElementById("city_" + i.toString()).src = "image/raining_3.png";
                 } else if (rainStatus >= 75 && rainStatus <= 100) {
-                    document.getElementById("city_" + (i + 1).toString()).src = "image/raining_4.png";
+                    document.getElementById("city_" + i.toString()).src = "image/raining_4.png";
                 }
             }
         });
