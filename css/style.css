@@ -14,20 +14,26 @@ section {
 }
 
 section #app {
-  position: relative;
-  top: 160px;
   max-width: 590px;
   width: 100%;
 }
 
 section svg {
+  fill: #18B7BE;
   position: relative;
+  top: 50px;
   right: 60px;
   stroke: white;
 }
 
 section path:hover {
   fill: #072A40;
+}
+
+section .pin {
+  position: relative;
+  width: 50px;
+  height: 50px;
 }
 
 section .weather_box {
@@ -46,7 +52,7 @@ section .weather_box .button {
   border: solid 1px;
   border-radius: 5px;
   display: inline-block;
-  margin-left: 50px;
+  margin-left: 40px;
   color: #072A40;
 }
 
@@ -119,4 +125,15 @@ section .weather_box ul .g1 {
 section .weather_box ul li:hover {
   -webkit-box-shadow: 3px 3px 5px 6px #cccccc;
           box-shadow: 3px 3px 5px 6px #cccccc;
+}
+
+.info {
+  position: relative;
+  top: 100px;
+  left: 50px;
+  border: solid;
+  background-color: #072A40;
+  border-radius: 5px;
+  width: 300px;
+  height: 150px;
 }

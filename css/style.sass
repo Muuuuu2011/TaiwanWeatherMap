@@ -1,3 +1,7 @@
+@mixin size($w,$h)
+    width: $w    
+    height: $h
+    
 @mixin width($m,$w)
     max-width: $m
     width: $w
@@ -22,16 +26,24 @@ section
     margin: auto
 
     & #app
-        +rel-top(relative,160px)
+        // +rel-top(relative,150px)
         +width(590px,100%)
 
     & svg
+        fill: $color-lightblue
         position: relative
+        top: 50px
         right: 60px
         stroke:  white
 
     & path:hover
         fill: $color-darkblue
+
+
+    & .pin
+        position: relative
+        +size(50px,50px)
+
 
 
     & .weather_box
@@ -46,7 +58,7 @@ section
             border: solid 1px 
             border-radius: 5px
             display: inline-block
-            margin-left: 50px
+            margin-left: 40px
             color: $color-darkblue
         & .button:hover
             box-shadow: 3px 3px 5px 6px #cccccc
@@ -84,8 +96,7 @@ section
 
                     & img 
                         margin: auto 
-                        width: 39px
-                        height: 39px
+                        +size(39px,39px)
                     
                     & .textW
                         width: 100%
@@ -99,3 +110,16 @@ section
 
             & li:hover
                 box-shadow: 3px 3px 5px 6px #cccccc
+
+
+.info
+    +rel-top(relative,100px)
+    left: 50px
+    border: solid
+    background-color: $color-darkblue
+    border-radius: 5px
+    +size(300px,150px)
+    & .location
+           
+        
+        
