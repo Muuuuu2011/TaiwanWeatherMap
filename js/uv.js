@@ -33,13 +33,13 @@ function renderRainPercent() {
             rainPercentRec.forEach((element) => {
                 orderedRec[order[element.locationName]] = element;
             });
-            console.log(orderedRec);
+            // console.log(orderedRec);
             let finalRec = [];
             orderedRec.forEach((element) => {
                 let percent = (parseInt(element.weatherElement[1].time[0].parameter.parameterName) + parseInt(element.weatherElement[1].time[1].parameter.parameterName) + parseInt(element.weatherElement[1].time[2].parameter.parameterName)) / 3;
                 finalRec.push([element.locationName, percent.toFixed(0)]);
             });
-            console.log(finalRec);
+            // console.log(finalRec);
             for (let i = 0; i < 22; i++) {
                 document.getElementById("text_" + i.toString()).textContent = finalRec[i][1] + "%";
                 let rainStatus = parseInt(finalRec[i][1]);
