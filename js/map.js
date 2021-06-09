@@ -1,5 +1,4 @@
 let mapRec;
-// function renderMap() {
 fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorization=" + 'CWB-AB82743B-F959-4FB2-A795-05DFE709A1FA')
     .then((response) => {
         return response.json();
@@ -33,29 +32,35 @@ fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorizati
         mapRec.forEach((element) => {
             orderedRec[order[element.locationName]] = element;
         });
-        console.log(orderedRec);
-        let finalRec = [];
+        let finalRec = {};
         orderedRec.forEach((element) => {
             let description = element.weatherElement[0].time[1].parameter.parameterName;
-            finalRec.push([element.locationName, description]);
+            finalRec[element.locationName] = description;
         });
-        console.log(finalRec);
-
-        // for (let i = 0; i < 22; i++) {
-        //     document.getElementById("text_" + i.toString()).textContent = finalRec[i][1] + "°C";
-        //     let wxStatus = parseInt(finalRec[i][2]);
-        //     if (wxStatus == 1) {
-        //         document.getElementById("city_" + i.toString()).src = "image/sunny.png";
-        //     } else if (wxStatus == 2 || wxStatus == 3) {
-        //         document.getElementById("city_" + i.toString()).src = "image/sunCloud.png";
-        //     } else if (wxStatus >= 4 && wxStatus < 8) {
-        //         document.getElementById("city_" + i.toString()).src = "image/cloudy.png";
-        //     } else if (wxStatus >= 8 && wxStatus < 42) {
-        //         document.getElementById("city_" + i.toString()).src = "image/rainy.png";
-        //     } else if (wxStatus == 42) {
-        //         document.getElementById("city_" + i.toString()).src = "image/snow.png";
-        //     }
-        // }
+        for (let i = 0; i < 41; i++) {
+            if (document.getElementsByTagName('path')[i].getAttribute("data-name-zh") != null) {
+                document.getElementsByTagName('path')[i].addEventListener('mouseover', function () {
+                    let city = document.getElementsByTagName('path')[i].getAttribute("data-name-zh");
+                    console.log(city);
+                    document.querySelector('.city_name').textContent = city;
+                    document.querySelector('.weather').textContent = finalRec[city];
+                });
+            }
+        }
+        for (let j = 0; j < 2; j++) {
+            if (document.getElementsByTagName('g')[j].getAttribute("data-name-zh") != null) {
+                document.getElementsByTagName('g')[j].addEventListener('mouseover', function () {
+                    let city = document.getElementsByTagName('g')[j].getAttribute("data-name-zh");
+                    document.querySelector('.city_name').textContent = city;
+                    document.querySelector('.weather').textContent = finalRec[city];
+                });
+            } else if (document.getElementsByTagName('g')[j].getAttribute("data-name-zh") == null) {
+                document.getElementsByTagName('g')[j].addEventListener('mouseover', function () {
+                    document.querySelector('.city_name').textContent = "馬祖縣";
+                    document.querySelector('.weather').textContent = finalRec.連江縣;
+                });
+            }
+        }
     });
-// }
-// document.querySelector('.weather-btn').addEventListener('click', renderMap)
+
+

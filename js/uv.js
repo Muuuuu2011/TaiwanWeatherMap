@@ -56,4 +56,3 @@ function renderRainPercent() {
         });
 }
 document.querySelector('.percent-btn').addEventListener('click', renderRainPercent)
-console.log('test');
