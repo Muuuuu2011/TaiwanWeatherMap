@@ -1,4 +1,52 @@
-let records=null;
+let items=[];
+let counts={
+	'基隆市': 0,
+	'宜蘭縣': 0,
+	'臺北市': 0,
+	'新北市': 0,
+	'桃園市': 0,
+	'新竹縣': 0,
+	'新竹市': 0,
+	'苗栗縣': 0,
+	'臺中市': 0,
+	'彰化縣': 0,
+	'南投縣': 0,
+	'雲林縣': 0,
+	'嘉義縣': 0,
+	'嘉義市': 0,
+	'臺南市': 0,
+	'高雄市': 0,
+	'屏東縣': 0,
+	'臺東縣': 0,
+	'花蓮縣': 0,
+	'金門縣': 0,
+	'澎湖縣': 0,
+	'連江縣': 0
+};
+let values={
+	'基隆市': 0,
+	'宜蘭縣': 0,
+	'臺北市': 0,
+	'新北市': 0,
+	'桃園市': 0,
+	'新竹縣': 0,
+	'新竹市': 0,
+	'苗栗縣': 0,
+	'臺中市': 0,
+	'彰化縣': 0,
+	'南投縣': 0,
+	'雲林縣': 0,
+	'嘉義縣': 0,
+	'嘉義市': 0,
+	'臺南市': 0,
+	'高雄市': 0,
+	'屏東縣': 0,
+	'臺東縣': 0,
+	'花蓮縣': 0,
+	'金門縣': 0,
+	'澎湖縣': 0,
+	'連江縣': 0
+};
 fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0002-001?Authorization=CWB-DD6B41F4-A301-465B-AB22-A9F285B320AA&elementName=HOUR_24&parameterName=CITY").then((response)=>{
 	return response.json();
 }).then((data)=>{
@@ -58,7 +106,15 @@ function renderRaining(page){
 	peh_value=0
 	//計算地區平均雨量
 	for(i=0;i<records["location"].length;i++){
-		
+		let parameterName = records["location"][i]["parameter"][0]["parameterValue"]
+		// let elementValue = records["location"][i]["weatherElement"][0]["elementValue"]
+		counts[parameterName]=counts[parameterName]?counts[parameterName]+1:1;
+		// values[parameterName]=values[parameterName]?values[parameterName]+records["location"][i]["weatherElement"][0]["elementValue"]:1;
+		if (counts[parameterName]==counts[parameterName]){
+			values[parameterName]+=parseFloat(records["location"][i]["weatherElement"][0]["elementValue"]);
+		}
+
+
 		if(records["location"][i]["parameter"][0]["parameterValue"]=="基隆市"){
 			kee_value+=parseFloat(records["location"][i]["weatherElement"][0]["elementValue"])
 			kee_count+=1
@@ -151,471 +207,76 @@ function renderRaining(page){
 			continue;
 		}
 	}
+	console.log(counts)
+	console.log(values)
+	console.log(kee_value,kee_count)
 	kee_raining=kee_value/kee_count
-	console.log("基隆"+kee_raining)
+	items.push(kee_raining)
 	tph_raining=tph_value/tph_count
-	console.log("新北"+tph_raining)
+	console.log(tph_count,tph_value)
+	items.push(tph_raining)
 	tpe_raining=tpe_value/tpe_count
-	console.log("台北"+tpe_raining)
+	items.push(tpe_raining)
 	tyc_raining=tyc_value/tyc_count
-	console.log("桃園"+tyc_raining)
+	items.push(tyc_raining)
 	hsh_raining=hsh_value/hsh_count
-	console.log("新竹縣"+hsh_raining)
+	items.push(hsh_raining)
 	hsc_raining=hsc_value/hsc_count
-	console.log("新竹市"+hsc_raining)
+	items.push(hsc_raining)
 	mal_raining=mal_value/mal_count
-	console.log("苗栗"+mal_raining)
+	items.push(mal_raining)
 	txg_raining=txg_value/txg_count
-	console.log("台中"+txg_raining)
+	items.push(txg_raining)
 	cwh_raining=cwh_value/cwh_count
-	console.log("彰化"+cwh_raining)
+	items.push(cwh_raining)
 	nto_raining=nto_value/nto_count
-	console.log("南投"+nto_raining)
+	items.push(nto_raining)
 	ylh_raining=ylh_value/ylh_count
-	console.log("雲林"+ylh_raining)
+	items.push(ylh_raining)
 	chy_raining=chy_value/chy_count
-	console.log("嘉義縣"+chy_raining)
+	items.push(chy_raining)
 	cyi_raining=cyi_value/cyi_count
-	console.log("嘉義市"+cyi_raining)
+	items.push(cyi_raining)
 	tnn_raining=tnn_value/tnn_count
-	console.log("台南"+tnn_raining)
+	items.push(tnn_raining)
 	khh_raining=khh_value/khh_count
-	console.log("高雄"+khh_raining)
+	items.push(khh_raining)
 	iuh_raining=iuh_value/iuh_count
-	console.log("屏東"+iuh_raining)
+	items.push(iuh_raining)
 	iln_raining=iln_value/iln_count
-	console.log("宜蘭"+iln_raining)
+	items.push(iln_raining)
 	hwa_raining=hwa_value/hwa_count
-	console.log("花蓮"+hwa_raining)
+	items.push(hwa_raining)
 	ttt_raining=ttt_value/ttt_count
-	console.log("台東"+ttt_raining)
+	items.push(ttt_raining)
 	peh_raining=peh_value/peh_count
-	console.log("澎湖"+peh_raining)
+	items.push(peh_raining)
 	kmn_raining=kmn_value/kmn_count
-	console.log("金門"+kmn_raining)
+	items.push(kmn_raining)
 	lnn_raining=lnn_value/lnn_count
-	console.log("連江"+lnn_raining)
+	items.push(lnn_raining)
 
 	let weather_btn=document.getElementsByClassName("button")[2]
 	weather_btn.addEventListener("click",function(){
-		//判斷數值區間並帶入該縣市欄位
-		if(kee_raining <= 0){
-			let img =document.getElementById("city_1");
-			img.src="./image/raining_1.png";
-			kee_raining=0;
-			document.getElementById("text_1").textContent=kee_raining.toFixed(2)
-		}else if(kee_raining<=30){
-			let img =document.getElementById("city_1");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_1").textContent=kee_raining.toFixed(2)
-		}else if(kee_raining<=100){
-			let img =document.getElementById("city_1");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_1").textContent=kee_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_1");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_1").textContent=kee_raining.toFixed(2)
-		}
 
-		if(tph_raining <= 0){
-			let img =document.getElementById("city_4");
-			img.src="./image/raining_1.png";
-			tph_raining=0;
-			document.getElementById("text_4").textContent=tph_raining.toFixed(2)
-		}else if(tph_raining<=30){
-			let img =document.getElementById("city_4");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_4").textContent=tph_raining.toFixed(2)
-		}else if(tph_raining<=100){
-			let img =document.getElementById("city_4");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_4").textContent=tph_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_4");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_4").textContent=tph_raining.toFixed(2)
-		}
+		for(i=0;i<items.length;i++){
+			if(items[i]<=0){
+				document.getElementById("city_"+i).src="./image/humidity_4.png";
+				items[i]=0;
+				document.getElementById("text_"+i).textContent=items[i].toFixed(2);
+			}else if(items[i]<=50){
+				document.getElementById("city_"+i).src="./image/humidity_3.png";
+				document.getElementById("text_"+i).textContent=items[i].toFixed(2);
+			}else if(items[i]<=100){
+				document.getElementById("city_"+i).src="./image/humidity_2.png";
+				document.getElementById("text_"+i).textContent=items[i].toFixed(2);
+			}else if(items[i]>100){
+				document.getElementById("city_"+i).src="./image/humidity_1.png";
+				document.getElementById("text_"+i).textContent=items[i].toFixed(2);
+			}
 
-		if(tpe_raining <= 0){
-			let img =document.getElementById("city_3");
-			img.src="./image/raining_1.png";
-			tpe_raining=0;
-			document.getElementById("text_3").textContent=tpe_raining.toFixed(2)
-		}else if(tpe_raining<=30){
-			let img =document.getElementById("city_3");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_3").textContent=tpe_raining.toFixed(2)
-		}else if(tpe_raining<=100){
-			let img =document.getElementById("city_3");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_3").textContent=tpe_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_3");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_3").textContent=tpe_raining.toFixed(2)
 		}
 		
-		if(tyc_raining <= 0){
-			let img =document.getElementById("city_5");
-			img.src="./image/raining_1.png";
-			tyc_raining=0;
-			document.getElementById("text_5").textContent=tyc_raining.toFixed(2)
-		}else if(tyc_raining<=30){
-			let img =document.getElementById("city_5");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_5").textContent=tyc_raining.toFixed(2)
-		}else if(tyc_raining<=100){
-			let img =document.getElementById("city_5");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_5").textContent=tyc_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_5");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_5").textContent=tyc_raining.toFixed(2)
-		}
-
-		if(hsh_raining <= 0){
-			let img =document.getElementById("city_6");
-			img.src="./image/raining_1.png";
-			hsh_raining=0;
-			document.getElementById("text_6").textContent=hsh_raining.toFixed(2)
-		}else if(hsh_raining<=30){
-			let img =document.getElementById("city_6");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_6").textContent=hsh_raining.toFixed(2)
-		}else if(hsh_raining<=100){
-			let img =document.getElementById("city_6");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_6").textContent=hsh_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_6");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_6").textContent=hsh_raining.toFixed(2)
-		}
-
-		if(hsc_raining <= 0){
-			let img =document.getElementById("city_7");
-			img.src="./image/raining_1.png";
-			hsc_raining=0;
-			document.getElementById("text_7").textContent=hsc_raining.toFixed(2)
-		}else if(hsc_raining<=30){
-			let img =document.getElementById("city_7");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_7").textContent=hsc_raining.toFixed(2)
-		}else if(hsc_raining<=100){
-			let img =document.getElementById("city_7");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_7").textContent=hsc_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_7");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_7").textContent=hsc_raining.toFixed(2)
-		}
-
-		if(mal_raining <= 0){
-			let img =document.getElementById("city_8");
-			img.src="./image/raining_1.png";
-			mal_raining=0;
-			document.getElementById("text_8").textContent=mal_raining.toFixed(2)
-		}else if(mal_raining<=30){
-			let img =document.getElementById("city_8");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_8").textContent=mal_raining.toFixed(2)
-		}else if(mal_raining<=100){
-			let img =document.getElementById("city_8");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_8").textContent=mal_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_8");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_8").textContent=mal_raining.toFixed(2)
-		}
-
-		if(txg_raining <= 0){
-			let img =document.getElementById("city_9");
-			img.src="./image/raining_1.png";
-			txg_raining=0;
-			document.getElementById("text_9").textContent=txg_raining.toFixed(2)
-		}else if(txg_raining<=30){
-			let img =document.getElementById("city_9");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_9").textContent=txg_raining.toFixed(2)
-		}else if(txg_raining<=100){
-			let img =document.getElementById("city_9");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_9").textContent=txg_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_9");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_9").textContent=txg_raining.toFixed(2)
-		}
-
-		if(cwh_raining <= 0){
-			let img =document.getElementById("city_10");
-			img.src="./image/raining_1.png";
-			cwh_raining=0;
-			document.getElementById("text_10").textContent=cwh_raining.toFixed(2)
-		}else if(cwh_raining<=30){
-			let img =document.getElementById("city_10");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_10").textContent=cwh_raining.toFixed(2)
-		}else if(cwh_raining<=100){
-			let img =document.getElementById("city_10");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_10").textContent=cwh_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_10");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_10").textContent=cwh_raining.toFixed(2)
-		}
-
-		if(nto_raining <= 0){
-			let img =document.getElementById("city_11");
-			img.src="./image/raining_1.png";
-			nto_raining=0;
-			document.getElementById("text_11").textContent=nto_raining.toFixed(2)
-		}else if(nto_raining<=30){
-			let img =document.getElementById("city_11");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_11").textContent=nto_raining.toFixed(2)
-		}else if(nto_raining<=100){
-			let img =document.getElementById("city_11");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_11").textContent=nto_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_11");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_11").textContent=nto_raining.toFixed(2)
-		}
-
-		if(ylh_raining <= 0){
-			let img =document.getElementById("city_12");
-			img.src="./image/raining_1.png";
-			ylh_raining=0;
-			document.getElementById("text_12").textContent=ylh_raining.toFixed(2)
-		}else if(ylh_raining<=30){
-			let img =document.getElementById("city_12");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_12").textContent=ylh_raining.toFixed(2)
-		}else if(ylh_raining<=100){
-			let img =document.getElementById("city_12");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_12").textContent=ylh_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_12");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_12").textContent=ylh_raining.toFixed(2)
-		}
-
-		if(chy_raining <= 0){
-			let img =document.getElementById("city_13");
-			img.src="./image/raining_1.png";
-			chy_raining=0;
-			document.getElementById("text_13").textContent=chy_raining.toFixed(2)
-		}else if(chy_raining<=30){
-			let img =document.getElementById("city_13");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_13").textContent=chy_raining.toFixed(2)
-		}else if(chy_raining<=100){
-			let img =document.getElementById("city_13");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_13").textContent=chy_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_13");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_13").textContent=chy_raining.toFixed(2)
-		}
-
-		if(cyi_raining <= 0){
-			let img =document.getElementById("city_14");
-			img.src="./image/raining_1.png";
-			cyi_raining=0;
-			document.getElementById("text_14").textContent=cyi_raining.toFixed(2)
-		}else if(cyi_raining<=30){
-			let img =document.getElementById("city_14");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_14").textContent=cyi_raining.toFixed(2)
-		}else if(cyi_raining<=100){
-			let img =document.getElementById("city_14");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_14").textContent=cyi_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_14");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_14").textContent=cyi_raining.toFixed(2)
-		}
-
-		if(tnn_raining <= 0){
-			let img =document.getElementById("city_15");
-			img.src="./image/raining_1.png";
-			tnn_raining=0;
-			document.getElementById("text_15").textContent=tnn_raining.toFixed(2)
-		}else if(tnn_raining<=30){
-			let img =document.getElementById("city_15");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_15").textContent=tnn_raining.toFixed(2)
-		}else if(tnn_raining<=100){
-			let img =document.getElementById("city_15");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_15").textContent=tnn_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_15");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_15").textContent=tnn_raining.toFixed(2)
-		}
-
-		if(khh_raining <= 0){
-			let img =document.getElementById("city_16");
-			img.src="./image/raining_1.png";
-			khh_raining=0;
-			document.getElementById("text_16").textContent=khh_raining.toFixed(2)
-		}else if(khh_raining<=30){
-			let img =document.getElementById("city_16");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_16").textContent=khh_raining.toFixed(2)
-		}else if(khh_raining<=100){
-			let img =document.getElementById("city_16");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_16").textContent=khh_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_16");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_16").textContent=khh_raining.toFixed(2)
-		}
-
-		if(iuh_raining <= 0){
-			let img =document.getElementById("city_17");
-			img.src="./image/raining_1.png";
-			iuh_raining=0;
-			document.getElementById("text_17").textContent=iuh_raining.toFixed(2)
-		}else if(iuh_raining<=30){
-			let img =document.getElementById("city_17");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_17").textContent=iuh_raining.toFixed(2)
-		}else if(iuh_raining<=100){
-			let img =document.getElementById("city_17");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_17").textContent=iuh_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_17");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_17").textContent=iuh_raining.toFixed(2)
-		}
-
-		if(iln_raining <= 0){
-			let img =document.getElementById("city_2");
-			img.src="./image/raining_1.png";
-			iln_raining=0;
-			document.getElementById("text_2").textContent=iln_raining.toFixed(2)
-		}else if(iln_raining<=30){
-			let img =document.getElementById("city_2");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_2").textContent=iln_raining.toFixed(2)
-		}else if(iln_raining<=100){
-			let img =document.getElementById("city_2");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_2").textContent=iln_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_2");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_2").textContent=iln_raining.toFixed(2)
-		}
-
-		if(ttt_raining <= 0){
-			let img =document.getElementById("city_18");
-			img.src="./image/raining_1.png";
-			ttt_raining=0;
-			document.getElementById("text_18").textContent=ttt_raining.toFixed(2)
-		}else if(ttt_raining<=30){
-			let img =document.getElementById("city_18");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_18").textContent=ttt_raining.toFixed(2)
-		}else if(ttt_raining<=100){
-			let img =document.getElementById("city_18");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_18").textContent=ttt_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_18");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_18").textContent=ttt_raining.toFixed(2)
-		}
-
-		if(hwa_raining <= 0){
-			let img =document.getElementById("city_19");
-			img.src="./image/raining_1.png";
-			hwa_raining=0;
-			document.getElementById("text_19").textContent=hwa_raining.toFixed(2)
-		}else if(hwa_raining<=30){
-			let img =document.getElementById("city_19");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_19").textContent=hwa_raining.toFixed(2)
-		}else if(hwa_raining<=100){
-			let img =document.getElementById("city_19");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_19").textContent=hwa_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_19");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_19").textContent=hwa_raining.toFixed(2)
-		}
-
-		if(kmn_raining <= 0){
-			let img =document.getElementById("city_20");
-			img.src="./image/raining_1.png";
-			kmn_raining=0;
-			document.getElementById("text_20").textContent=kmn_raining.toFixed(2)
-		}else if(kmn_raining<=30){
-			let img =document.getElementById("city_20");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_20").textContent=kmn_raining.toFixed(2)
-		}else if(kmn_raining<=100){
-			let img =document.getElementById("city_20");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_20").textContent=kmn_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_20");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_20").textContent=kmn_raining.toFixed(2)
-		}
-
-		if(peh_raining <= 0){
-			let img =document.getElementById("city_21");
-			img.src="./image/raining_1.png";
-			peh_raining=0;
-			document.getElementById("text_21").textContent=peh_raining.toFixed(2)
-		}else if(peh_raining<=30){
-			let img =document.getElementById("city_21");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_21").textContent=peh_raining.toFixed(2)
-		}else if(peh_raining<=100){
-			let img =document.getElementById("city_21");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_21").textContent=peh_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_21");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_21").textContent=peh_raining.toFixed(2)
-		}
-
-		if(lnn_raining <= 0){
-			let img =document.getElementById("city_22");
-			img.src="./image/raining_1.png";
-			lnn_raining=0;
-			document.getElementById("text_22").textContent=lnn_raining.toFixed(2)
-		}else if(lnn_raining<=30){
-			let img =document.getElementById("city_22");
-			img.src="./image/raining_2.png";
-			document.getElementById("text_22").textContent=lnn_raining.toFixed(2)
-		}else if(lnn_raining<=100){
-			let img =document.getElementById("city_22");
-			img.src="./image/raining_3.png";
-			document.getElementById("text_22").textContent=lnn_raining.toFixed(2)
-		}else{
-			let img =document.getElementById("city_22");
-			img.src="./image/raining_4.png";
-			document.getElementById("text_22").textContent=lnn_raining.toFixed(2)
-		}
 
 	})
 }
