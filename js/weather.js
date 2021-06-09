@@ -5,6 +5,7 @@ function renderWeather() {
             return response.json();
         }).then((data) => {
             weatherRec = data.records.location;
+            // console.log(weatherRec)
             let order = {
                 '基隆市': 0,
                 '宜蘭縣': 1,
@@ -33,14 +34,14 @@ function renderWeather() {
             weatherRec.forEach((element) => {
                 orderedRec[order[element.locationName]] = element;
             });
-            console.log(orderedRec);
+            // console.log(orderedRec);
             let finalRec = [];
             orderedRec.forEach((element) => {
                 let temperature = (parseInt(element.weatherElement[2].time[0].parameter.parameterName) + parseInt(element.weatherElement[4].time[0].parameter.parameterName) + parseInt(element.weatherElement[2].time[1].parameter.parameterName) + parseInt(element.weatherElement[4].time[1].parameter.parameterName) + parseInt(element.weatherElement[2].time[2].parameter.parameterName) + parseInt(element.weatherElement[4].time[2].parameter.parameterName)) / 6;
                 let wx = element.weatherElement[0].time[1].parameter.parameterValue;
                 finalRec.push([element.locationName, temperature.toFixed(1), wx]);
             });
-            console.log(finalRec);
+            // console.log(finalRec);
 
             for (let i = 0; i < 22; i++) {
                 document.getElementById("text_" + i.toString()).textContent = finalRec[i][1] + "°C";

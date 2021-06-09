@@ -21,9 +21,13 @@ section #app {
 section svg {
   fill: #18B7BE;
   position: relative;
-  top: 50px;
-  right: 60px;
+  top: 200px;
+  right: 120px;
   stroke: white;
+}
+
+section path {
+  cursor: pointer;
 }
 
 section path:hover {
@@ -128,12 +132,38 @@ section .weather_box ul li:hover {
 }
 
 .info {
-  position: relative;
+  display: none;
+  position: absolute;
   top: 100px;
-  left: 50px;
-  border: solid;
-  background-color: #072A40;
+  left: 20px;
+  background-color: #F9F7F0;
   border-radius: 5px;
-  width: 300px;
+  width: 250px;
   height: 150px;
+}
+
+.info .location {
+  padding: 12px;
+}
+
+.info .location #city_name {
+  margin: 5px auto;
+  text-align: center;
+}
+
+.info .location #wx {
+  margin: 5px auto;
+  color: #072A40;
+  font-size: 20px;
+  text-align: center;
+}
+
+.info .location #temp {
+  margin: 5px auto;
+  text-align: center;
+}
+
+.info .location #ci {
+  margin: 5px auto;
+  text-align: center;
 }

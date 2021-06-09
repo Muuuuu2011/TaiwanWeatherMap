@@ -5,7 +5,7 @@ function renderRainPercent() {
             return response.json();
         }).then((data) => {
             rainPercentRec = data.records.location;
-            console.log( rainPercentRec)
+            // console.log( rainPercentRec)
             let order = {
                 '基隆市': 0,
                 '宜蘭縣': 1,
@@ -33,15 +33,14 @@ function renderRainPercent() {
             let orderedRec = [];
             rainPercentRec.forEach((element) => {
                 orderedRec[order[element.locationName]] = element;
-                console.log(orderedRec[order[element.locationName]])
             });
-            console.log(orderedRec);
+            // console.log(orderedRec);
             let finalRec = [];
             orderedRec.forEach((element) => {
                 let percent = (parseInt(element.weatherElement[1].time[0].parameter.parameterName) + parseInt(element.weatherElement[1].time[1].parameter.parameterName) + parseInt(element.weatherElement[1].time[2].parameter.parameterName)) / 3;
                 finalRec.push([element.locationName, percent.toFixed(0)]);
             });
-            console.log(finalRec);
+            // console.log(finalRec);
             for (let i = 0; i < 22; i++) {
                 document.getElementById("text_" + i.toString()).textContent = finalRec[i][1] + "%";
                 let rainStatus = parseInt(finalRec[i][1]);
