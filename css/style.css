@@ -42,14 +42,14 @@ section .pin {
 
 section .weather_box {
   position: relative;
-  top: 120px;
+  top: 110px;
   max-width: 620px;
   width: 100%;
 }
 
 section .weather_box .button {
   position: relative;
-  top: 30px;
+  top: 20px;
   letter-spacing: 5px;
   padding: 5px 10px;
   font-size: 25px;
@@ -137,6 +137,8 @@ section .weather_box ul li:hover {
   border-radius: 5px;
   width: 250px;
   height: 150px;
+  -webkit-box-shadow: 3px 3px 5px 6px #cccccc;
+          box-shadow: 3px 3px 5px 6px #cccccc;
 }
 
 .info .location {
