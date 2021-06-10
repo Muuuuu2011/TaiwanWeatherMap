@@ -46,10 +46,12 @@ fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorizati
       finalRec1.push([name,wx,temperature,ci]);
     });
 
+    
+
     for(let i=0;i<finalRec1.length;i++){    
         document.getElementById(`c${i}`).addEventListener("mouseenter",function(){
         document.getElementById(`c${i}`).setAttribute("style","fill:#072A40");
-        document.getElementById("info").style.display="block";
+        document.getElementById("info").style.transform="scale(1)";
         document.getElementById("city_name").textContent=finalRec1[i][0];
         document.getElementById("wx").textContent=finalRec1[i][1];
         document.getElementById("temp").textContent=finalRec1[i][2]+"°C";
@@ -57,7 +59,7 @@ fetch("https://opendata.cwb.gov.tw/api/v1/rest/datastore/F-C0032-001?Authorizati
       })
       document.getElementById(`c${i}`).addEventListener("mouseleave",function(){
         document.getElementById(`c${i}`).setAttribute("style","fill:#18B7BE");
-        document.getElementById("info").style.display="none";   
+        document.getElementById("info").style.transform="scale(0)";   
       })
     }
 

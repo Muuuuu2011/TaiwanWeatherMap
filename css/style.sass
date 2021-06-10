@@ -31,8 +31,8 @@ section
 
     & svg
         fill: #18B7BE
-        +rel-top(relative,180px)
-        right: 120px
+        +rel-top(relative,50px)
+        right: 150px
         stroke:  white
     
     & path
@@ -117,13 +117,19 @@ section
 
 
 .info
-    display: none
-    +rel-top(absolute,100px)
+    
+    +rel-top(relative,100px)
     left: 20px
     background-color: $color-white
     border-radius: 5px
     +size(250px,150px)
     box-shadow: 3px 3px 5px 6px #cccccc
+    z-index: 99
+    transform: scale(0)
+    transition-duration: 0.5s
+    transform-origin: right bottom
+
+
     & .location
         padding: 5px
         & #city_name
