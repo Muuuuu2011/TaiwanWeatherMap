@@ -21,7 +21,7 @@ section #app {
 section svg {
   fill: #18B7BE;
   position: relative;
-  top: 200px;
+  top: 180px;
   right: 120px;
   stroke: white;
 }
@@ -42,7 +42,7 @@ section .pin {
 
 section .weather_box {
   position: relative;
-  top: 60px;
+  top: 120px;
   max-width: 620px;
   width: 100%;
 }
@@ -67,15 +67,11 @@ section .weather_box .button:hover {
 
 section .weather_box ul {
   list-style-type: none;
-  margin-top: 50px;
+  margin-top: 80px;
   padding: 0px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
@@ -98,6 +94,7 @@ section .weather_box ul li .city1, section .weather_box ul li .city2 {
   display: block;
   text-align: center;
   position: relative;
+  color: #072A40;
 }
 
 section .weather_box ul li .span2 {
@@ -143,27 +140,50 @@ section .weather_box ul li:hover {
 }
 
 .info .location {
-  padding: 12px;
+  padding: 5px;
 }
 
 .info .location #city_name {
   margin: 5px auto;
   text-align: center;
+  font-size: 22px;
 }
 
 .info .location #wx {
   margin: 5px auto;
   color: #072A40;
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
 }
 
 .info .location #temp {
   margin: 5px auto;
   text-align: center;
+  font-size: 22px;
 }
 
 .info .location #ci {
   margin: 5px auto;
+  text-align: center;
+  font-size: 22px;
+}
+
+footer {
+  width: 100%;
+  height: 80px;
+  background-color: #9e9e9c;
+  position: relative;
+  top: 150px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+
+footer p {
+  padding-top: 25px;
   text-align: center;
 }
